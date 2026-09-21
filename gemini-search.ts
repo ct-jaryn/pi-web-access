@@ -38,12 +38,13 @@ import { isSerpBaseAvailable, searchWithSerpBase } from "./serpbase.ts";
 import { isSerpApiAvailable, searchWithSerpApi } from "./serpapi.ts";
 import { isSerperAvailable, searchWithSerper } from "./serper.ts";
 import { isSerplyAvailable, searchWithSerply } from "./serply.ts";
+import { isBaizhiAvailable, searchWithBaizhi } from "./baizhi.ts";
 import { isValyuAvailable, searchWithValyu } from "./valyu.ts";
 import { isKimiSearchAvailable, searchWithKimi } from "./kimi-search.ts";
 import { isMistralAvailable, searchWithMistral } from "./mistral-search.ts";
 import { getWebSearchConfigPath } from "./utils.ts";
 
-export const RESOLVED_SEARCH_PROVIDERS = ["openai", "brave", "parallel", "parallel-mcp", "tinyfish", "search1api", "searchinfinity", "querit", "tavily", "firecrawl", "jina", "searxng", "duckduckgo", "perplexity", "gemini", "kimi", "exa", "serpdive", "kagi", "ollama", "anysearch", "xai", "mistral", "brightdata", "serpbase", "serpapi", "serper", "serply", "valyu", "bocha", "xcrawl"] as const;
+export const RESOLVED_SEARCH_PROVIDERS = ["openai", "brave", "parallel", "parallel-mcp", "tinyfish", "search1api", "searchinfinity", "querit", "tavily", "firecrawl", "jina", "searxng", "duckduckgo", "perplexity", "gemini", "kimi", "exa", "serpdive", "kagi", "ollama", "anysearch", "xai", "mistral", "brightdata", "serpbase", "serpapi", "serper", "serply", "valyu", "bocha", "xcrawl", "baizhi"] as const;
 export const SEARCH_PROVIDERS = ["auto", "all", ...RESOLVED_SEARCH_PROVIDERS] as const;
 
 export type ResolvedSearchProvider = typeof RESOLVED_SEARCH_PROVIDERS[number];
@@ -411,6 +412,7 @@ async function searchWithResolvedProvider(
 	if (provider === "serpapi") return { ...(await searchWithSerpApi(query, options)), provider };
 	if (provider === "serper") return { ...(await searchWithSerper(query, options)), provider };
 	if (provider === "serply") return { ...(await searchWithSerply(query, options)), provider };
+	if (provider === "baizhi") return { ...(await searchWithBaizhi(query, options)), provider };
 	if (provider === "valyu") return { ...(await searchWithValyu(query, options)), provider };
 	if (provider === "xcrawl") return { ...(await searchWithXCrawl(query, options)), provider };
 	if (provider === "perplexity") return { ...(await searchWithPerplexity(query, options)), provider };
@@ -461,6 +463,7 @@ async function isResolvedProviderAvailable(provider: ResolvedSearchProvider, opt
 	if (provider === "serpapi") return isSerpApiAvailable();
 	if (provider === "serper") return isSerperAvailable();
 	if (provider === "serply") return isSerplyAvailable();
+	if (provider === "baizhi") return isBaizhiAvailable();
 	if (provider === "valyu") return isValyuAvailable();
 	if (provider === "xcrawl") return isXcrawlAvailable();
 	if (provider === "perplexity") return isPerplexityAvailable();
@@ -502,6 +505,7 @@ export function providerLabel(provider: ResolvedSearchProvider): string {
 	if (provider === "serpapi") return "SerpApi";
 	if (provider === "serper") return "Serper";
 	if (provider === "serply") return "Serply";
+	if (provider === "baizhi") return "Baizhi";
 	if (provider === "valyu") return "Valyu";
 	return provider.charAt(0).toUpperCase() + provider.slice(1);
 }

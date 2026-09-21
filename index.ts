@@ -72,6 +72,7 @@ import { isSerpBaseAvailable } from "./serpbase.ts";
 import { isSerpApiAvailable } from "./serpapi.ts";
 import { isSerperAvailable } from "./serper.ts";
 import { isSerplyAvailable } from "./serply.ts";
+import { isBaizhiAvailable } from "./baizhi.ts";
 import { isValyuAvailable } from "./valyu.ts";
 import { isXcrawlAvailable } from "./xcrawl.ts";
 import { buildSearchErrorPlan, type SearchErrorDetails, type SearchErrorPlan } from "./render-search-error.ts";
@@ -155,6 +156,7 @@ interface WebSearchConfig {
 	serpapiApiKey?: unknown;
 	serperApiKey?: unknown;
 	serplyApiKey?: unknown;
+	baizhiApiKey?: unknown;
 	tinyfishApiKey?: unknown;
 	valyuApiKey?: unknown;
 	xaiApiKey?: unknown;
@@ -488,6 +490,7 @@ async function getProviderAvailability(ctx: ExtensionContext): Promise<ProviderA
 		serpapi: allowedProviders.has("serpapi") && isSerpApiAvailable(),
 		serper: allowedProviders.has("serper") && isSerperAvailable(),
 		serply: allowedProviders.has("serply") && isSerplyAvailable(),
+		baizhi: allowedProviders.has("baizhi") && isBaizhiAvailable(),
 		valyu: allowedProviders.has("valyu") && isValyuAvailable(),
 	};
 	return {
