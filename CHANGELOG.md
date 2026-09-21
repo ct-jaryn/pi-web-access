@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Added
+
+- Added an explicit-only Baizhi MCP search provider with credential-safe session handling, routing, and Curator support. Thanks to [@ct-jaryn](https://github.com/ct-jaryn) for [PR #422](https://github.com/nicobailon/pi-web-access/pull/422).
+
 ## [0.30.0] - 2026-09-19
 
 ### Highlights
